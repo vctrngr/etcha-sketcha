@@ -20,6 +20,7 @@ function makeGrid(size){
    
     for (let i = 0; i < size * size; i++){
         const sqr = document.createElement('div');
+        sqr.classList.add('square');
         sqr.style = 'margin: 0; padding: 0;';
         sqr.style.border = `solid #666666 ${borders}px`;
         sqr.style.width = `${totalWidth / size}px`;
@@ -29,5 +30,30 @@ function makeGrid(size){
     }
 }
 
-makeGrid(56);
+makeGrid(gridSize);
+hoverColor();
 
+function hoverColor(){
+    const squares = document.querySelectorAll('.square');
+
+    function bgChange(e){
+        e.style.backgroundColor = 'black';
+    }
+    
+    squares.forEach(square => 
+        square.addEventListener('mouseover', function(e){
+            console.log(e.target);
+            e.target.style.backgroundColor = 'black';
+        }))
+    
+}
+
+const button = document.querySelector('#optionsButton');
+
+button.addEventListener('click', function(e){
+    gridSize = parseInt(prompt('Choose the size of the grid', '12'));
+    console.log(gridSize);
+    container.innerHTML = '';
+    makeGrid(gridSize);
+    hoverColor();
+})
