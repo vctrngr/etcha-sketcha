@@ -25,7 +25,7 @@ function makeGrid(size){
         sqr.style.border = `solid #666666 ${borders}px`;
         sqr.style.width = `${totalWidth / size}px`;
         sqr.style.height = `${totalWidth / size}px`;
-        // sqr.style.flex = '0 2 0';
+        sqr.style.backgroundColor = 'rgb(255, 255, 255)';
         container.appendChild(sqr);
     }
 }
@@ -42,8 +42,10 @@ function hoverColor(){
     
     squares.forEach(square => 
         square.addEventListener('mouseover', function(e){
-            console.log(e.target);
-            e.target.style.backgroundColor = 'black';
+            let rgb = parseInt(e.target.style.backgroundColor.substring(4, 7));
+            //console.log(parseInt(e.target.style.backgroundColor.substring(4, 7)));
+            //e.target.style.backgroundColor = 'black';
+            e.target.style.backgroundColor = `rgb(${rgb - 25.5}, ${rgb - 25.5}, ${rgb - 25.5})`;
         }))
     
 }
